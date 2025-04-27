@@ -4,12 +4,12 @@ on:
   push:
     tags:
       - "v*"
-    branches:
-      - "**"
-    paths:
-      - ".github/workflows/install.yml"
-      - "assets/**"
-      - "**.py"
+    # branches:
+    #   - "**"
+    # paths:
+    #   - ".github/workflows/install.yml"
+    #   - "assets/**"
+    #   - "**.py"
   pull_request:
     branches:
       - "**"
@@ -54,8 +54,8 @@ jobs:
     runs-on: macos-latest
     strategy:
       matrix:
-        os: [win, osx, linux]
-        arch: [arm64, x64]
+        os: [win, macos, linux]
+        arch: [aarch64, x86_64]
       fail-fast: false
 
     steps:
@@ -63,17 +63,44 @@ jobs:
         with:
           submodules: true
 
+      - name: Download MaaFramework
+        uses: robinraju/release-downloader@v1
+        with:
+          repository: MaaXYZ/MaaFramework
+          fileName: "MAA-${{ matrix.os }}-${{ matrix.arch }}*"
+          latest: true
+          out-file-path: "deps"
+          extract: true
+
       - name: Install
         shell: bash
         run: |
           python ./install.py ${{ needs.meta.outputs.tag }}
+
+      - name: Set MFA download config
+        id: MFADC
+        shell: bash
+        run: |
+          if ["${{ matrix.os }}" = "win"]; then
+            echo "OS=win" >> $GITHUB_OUTPUT
+          elif ["${{ matrix.os }}" = "macos"]; then
+            echo "OS=osx" >> $GITHUB_OUTPUT
+          elif ["${{ matrix.os }}" = "linux"]; then
+            echo "OS=linux" >> $GITHUB_OUTPUT
+          fi
+
+          if ["${{ matrix.arch }}" = "aarch64"]; then
+            echo "arch=arm64" >> $GITHUB_OUTPUT
+          elif ["${{ matrix.os }}" = "x86_64"]; then
+            echo "arch=x64" >> $GITHUB_OUTPUT
+          fi
 
       - name: Download MFA
         if: ${{ matrix.os != 'android' }}
         uses: robinraju/release-downloader@v1
         with:
           repository: SweetSmellFox/MFAAvalonia
-          fileName: "MFAAvalonia-*-${{ matrix.os }}-${{ matrix.arch }}*"
+          fileName: "MFAAvalonia-*-${{ steps.MFADC.outputs.OS }}-${{ steps.MFADC.outputs.arch }}*"
           latest: true
           out-file-path: "MFAAvalonia"
           extract: true
