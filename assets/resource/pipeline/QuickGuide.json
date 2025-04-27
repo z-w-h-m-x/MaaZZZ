@@ -1,0 +1,41 @@
+{
+    "ButtonCheck_DailyValue": {
+        "recognition": "ColorMatch",
+        "roi": [
+            232,
+            130,
+            7,
+            6
+        ],
+        "lower": [
+            17,
+            17,
+            17
+        ],
+        "upper": [
+            24,
+            24,
+            24
+        ],
+        "count": 35,
+        "inverse": true,
+        "next": [
+            "DailyValue_GetAward"
+        ]
+    },
+    "DailyValue_GetAward": {
+        "recognition": "OCR",
+        "expected": "今日最大活跃度",
+        "roi": [
+            238,
+            129,
+            191,
+            77
+        ],
+        "action": "Click",
+        "post_delay": 5000,
+        "next": [
+            "Click_Confirm_OCR"
+        ]
+    }
+}

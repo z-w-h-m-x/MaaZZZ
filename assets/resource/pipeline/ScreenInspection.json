@@ -1,0 +1,64 @@
+{
+    "MainScreenInspection": {
+        "action": "DoNothing",
+        "next": [
+            "InMainScreen"
+        ],
+        "interrupt": [
+            "Event_Error_当前正在处理",
+            "Event_AllNewProgram",
+            "Click_Button_Back"
+        ],
+        "rate_limit": 1000,
+        "timeout": 600000
+    },
+    "InMainScreen": {
+        "recognition": "FeatureMatch",
+        "template": "Button\\Button_VirtualController_Switch__1078_549_105_103__1028_499_205_203.png",
+        "roi": [
+            1028,
+            499,
+            205,
+            203
+        ],
+        "next": [
+            "MainScreen_CheckQuickMenu"
+        ],
+        "interrupt": [
+            "MainScreen_OpenQuickMenu",
+            "Click_Button_Back"
+        ]
+    },
+    "MainScreen_CheckQuickMenu": {
+        "recognition": "TemplateMatch",
+        "template": "Button\\Button_MainScreen_CloseQuickMenu__1175_35_52_53__1125_0_152_138.png",
+        "roi": [
+            1125,
+            0,
+            152,
+            138
+        ],
+        "detector": "KAZE",
+        "threshold": 0.6,
+        "post_delay": 5000
+    },
+    "MainScreen_OpenQuickMenu": {
+        "recognition": "FeatureMatch",
+        "template": "Button\\Button_MainScreen_QuickMenu__1175_35_52_53__1125_0_152_138.png",
+        "roi": [
+            1125,
+            0,
+            152,
+            138
+        ],
+        "action": "Click",
+        "post_delay": 5000
+    },
+    "Event_Error_当前正在处理": {
+        "recognition": "OCR",
+        "expected": "当前正在处理.*",
+        "next": [
+            "Click_Cancel_OCR"
+        ]
+    }
+}

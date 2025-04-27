@@ -54,8 +54,8 @@ jobs:
     runs-on: macos-latest
     strategy:
       matrix:
-        os: [win, macos, linux, android]
-        arch: [aarch64, x86_64]
+        os: [win, osx, linux]
+        arch: [arm64, x64]
       fail-fast: false
 
     steps:
@@ -63,56 +63,31 @@ jobs:
         with:
           submodules: true
 
-      - name: Download MaaFramework
-        uses: robinraju/release-downloader@v1
-        with:
-          repository: MaaXYZ/MaaFramework
-          fileName: "MAA-${{ matrix.os }}-${{ matrix.arch }}*"
-          latest: true
-          out-file-path: "deps"
-          extract: true
-
       - name: Install
         shell: bash
         run: |
           python ./install.py ${{ needs.meta.outputs.tag }}
 
-      - name: Download MFAWPF
-        if: ${{ matrix.os == 'win' }}
+      - name: Download MFA
+        if: ${{ matrix.os != 'android' }}
         uses: robinraju/release-downloader@v1
         with:
-          repository: SweetSmellFox/MFAWPF
-          fileName: "MFAWPF*"
+          repository: SweetSmellFox/MFAAvalonia
+          fileName: "MFAAvalonia-*-${{ matrix.os }}-${{ matrix.arch }}*"
           latest: true
-          out-file-path: "MFAWPF"
+          out-file-path: "MFAAvalonia"
           extract: true
 
-      - name: Install MFAWPF
-        if: ${{ matrix.os == 'win' }}
+      - name: Install MFAAvalonia
+        if: ${{ matrix.os != 'android' }}
         shell: bash
         run: |
-          cp MFAWPF/MFAWPF.exe install
-
-      - name: Download MFW
-        if: ${{ matrix.os != 'win' && matrix.os != 'android' }}
-        uses: robinraju/release-downloader@v1
-        with:
-          repository: overflow65537/MFW-PyQt6
-          fileName: "MFW-PyQt6-${{ matrix.os }}-${{ matrix.arch }}*"
-          latest: true
-          out-file-path: "MFW-PyQt6"
-          extract: true
-
-      - name: Install MFW-PyQt6
-        if: ${{ matrix.os != 'win' && matrix.os != 'android' }}
-        shell: bash
-        run: |
-          rm -rf MFW-PyQt6/MFW_resource/model
-          cp -r MFW-PyQt6/* install
+          rm -rf MFAAvalonia/resource/base/model
+          cp -r MFAAvalonia/* install
 
       - uses: actions/upload-artifact@v4
         with:
-          name: MaaXXX-${{ matrix.os }}-${{ matrix.arch }}
+          name: MaaZZZ-${{ matrix.os }}-${{ matrix.arch }}
           path: "install"
 
   release:

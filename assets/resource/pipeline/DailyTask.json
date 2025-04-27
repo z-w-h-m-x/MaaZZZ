@@ -1,0 +1,37 @@
+{
+    "DailyTask": {
+        "next": [
+            "DailyTask_Finish_400"
+        ],
+        "interrupt": [
+            "DailyCoffee_Goto",
+            "ScratchTicket_Goto",
+            "DailyRecommendation_Goto",
+            "Click_Button_QuickMenu_QuickGuide",
+            "ButtonCheck_DailyValue",
+            "Click_Button_QuickMenu_Daliy"
+        ]
+    },
+    "DailyTask_Finish_400": {
+        "recognition": "FeatureMatch",
+        "template": "Button\\Button_DailyValue_400__460_141_646_61__410_91_746_161.png",
+        "roi": [
+            410,
+            91,
+            746,
+            161
+        ],
+        "green_mask": true
+    },
+    "DailyTask_Finish_300": {
+        "recognition": "FeatureMatch",
+        "template": "Button\\Button_DailyValue_300__460_141_646_61__410_91_746_161.png",
+        "roi": [
+            410,
+            91,
+            746,
+            161
+        ],
+        "green_mask": true
+    }
+}

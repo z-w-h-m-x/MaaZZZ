@@ -1,0 +1,76 @@
+{
+    "Click_Cancel_OCR": {
+        "recognition": "OCR",
+        "expected": "取消",
+        "action": "Click",
+        "post_delay": 5000
+    },
+    "Click_Confirm_OCR": {
+        "recognition": "OCR",
+        "expected": "确认",
+        "action": "Click",
+        "post_delay": 5000
+    },
+    "Click_RightConfirm_OCR": {
+        "recognition": "OCR",
+        "expected": "确定",
+        "action": "Click",
+        "post_delay": 5000
+    },
+    "Click_Button_Back": {
+        "recognition": "FeatureMatch",
+        "template": "Button\\Button_Back__53_16_81_54__3_0_181_120.png",
+        "green_mask": true,
+        "method": 5,
+        "index": 0,
+        "threshold": 0.9,
+        "action": "Click",
+        "post_delay": 5000
+    },
+    "Click_Button_Close": {
+        "recognition": "FeatureMatch",
+        "template": "Button\\Button_Close__942_79_78_53__892_29_178_153.png",
+        "green_mask": true,
+        "method": 5,
+        "index": 0,
+        "threshold": 0.9,
+        "action": "Click",
+        "post_delay": 5000
+    },
+    "Click_Button_QuickMenu_QuickGuide": {
+        "recognition": "FeatureMatch",
+        "template": "Button\\Button_QuickMenu_QuickGuide__955_37_47_48__905_0_147_135.png",
+        "green_mask": true,
+        "method": 5,
+        "index": 0,
+        "action": "Click",
+        "post_delay": 5000,
+        "roi": [
+            881,
+            0,
+            399,
+            144
+        ],
+        "next": [
+            "Click_Button_QuickMenu_Daliy"
+        ],
+        "rate_limit": 1000,
+        "timeout": 60000
+    },
+    "Click_Button_QuickMenu_Daliy": {
+        "recognition": "OCR",
+        "expected": "日常",
+        "roi": [
+            409,
+            0,
+            764,
+            172
+        ],
+        "post_delay": 5000,
+        "action": "Click"
+    },
+    "StopGame": {
+        "action": "StopApp",
+        "package": "com.miHoYo.Nap"
+    }
+}

@@ -1,0 +1,95 @@
+{
+    "DailyRecommendation": {
+        "next": [
+            "DailyRecommendation_Goto"
+        ],
+        "interrupt": [
+            "Click_Button_QuickMenu_QuickGuide",
+            "Click_Button_QuickMenu_Daliy"
+        ]
+    },
+    "DailyRecommendation_Goto": {
+        "recognition": "OCR",
+        "expected": [
+            "开启今日录像店经营",
+            "前往"
+        ],
+        "roi": [
+            465,
+            232,
+            351,
+            388
+        ],
+        "index": 1,
+        "action": "Click",
+        "post_delay": 5000,
+        "next": [
+            "DailyRecommendation_Goto_Confirm"
+        ]
+    },
+    "DebugRecommendation_Scene": {
+        "next": [
+            "DailyRecommendation_Chose_Finish"
+        ],
+        "interrupt": [
+            "DailyRecommendation_Yesterday"
+        ]
+    },
+    "DailyRecommendation_Goto_Confirm": {
+        "recognition": "OCR",
+        "expected": "确认",
+        "action": "Click",
+        "post_delay": 5000,
+        "next": [
+            "DailyRecommendation_Check_Scene"
+        ],
+        "interrupt": [
+            "DailyRecommendation_Yesterday"
+        ],
+        "rate_limit": 1000,
+        "timeout": 600000
+    },
+    "DailyRecommendation_Check_Scene": {
+        "recognition": "OCR",
+        "expected": "经营状况",
+        "roi": [
+            799,
+            22,
+            122,
+            40
+        ],
+        "timeout": 600000,
+        "rate_limit": 1000,
+        "next": [
+            "DailyRecommendation_Chose_Finish"
+        ],
+        "interrupt": [
+            "DailyRecommendation_Chose_PublicityAgent_S01"
+        ]
+    },
+    "DailyRecommendation_Yesterday": {
+        "recognition": "OCR",
+        "expected": "昨日账本",
+        "roi": [
+            272,
+            85,
+            137,
+            62
+        ],
+        "next": [
+            "Click_Button_Close"
+        ]
+    },
+    "DailyRecommendation_Chose_Finish": {
+        "recognition": "FeatureMatch",
+        "template": "Empty_DailyRecommendation__509_412_676_202__459_362_776_302.png",
+        "green_mask": true,
+        "roi": [
+            459,
+            362,
+            776,
+            302
+        ],
+        "inverse": true
+    }
+}

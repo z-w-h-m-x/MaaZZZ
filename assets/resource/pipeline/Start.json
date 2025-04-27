@@ -1,0 +1,43 @@
+{
+    "StartUp": {
+        "action": "StartApp",
+        "package": "com.miHoYo.Nap",
+        "next": [
+            "EnterTheGame",
+            "InMainScreen"
+        ],
+        "interrupt": [
+            "Event_Error_当前正在处理",
+            "Event_AllNewProgram"
+        ],
+        "rate_limit": 1000,
+        "timeout": 6000000
+    },
+    "EnterTheGame": {
+        "recognition": "FeatureMatch",
+        "roi": [
+            1121,
+            286,
+            154,
+            153
+        ],
+        "template": [
+            "Button\\Button_ScanQR__1171_336_54_53__1121_286_154_153.png"
+        ],
+        "method": 5,
+        "index": 0,
+        "threshold": 0.7,
+        "green_mask": true,
+        "action": "Click",
+        "target": [
+            488,
+            537,
+            302,
+            108
+        ],
+        "enabled": true,
+        "next": [
+            "MainScreenInspection"
+        ]
+    }
+}

@@ -1,0 +1,157 @@
+{
+    "ScratchTicket": {
+        "next": [
+            "ScratchTicket_Goto"
+        ],
+        "interrupt": [
+            "Click_Button_QuickMenu_QuickGuide",
+            "Click_Button_QuickMenu_Daliy"
+        ]
+    },
+    "ScratchTicket_Goto": {
+        "recognition": "OCR",
+        "expected": [
+            "去报刊亭刮卡签到",
+            "前往"
+        ],
+        "roi": [
+            465,
+            232,
+            351,
+            388
+        ],
+        "index": 1,
+        "action": "Click",
+        "post_delay": 5000,
+        "next": [
+            "ScratchTicket_Goto_Confirm"
+        ]
+    },
+    "ScratchTicket_Goto_Confirm": {
+        "recognition": "OCR",
+        "expected": "确认",
+        "action": "Click",
+        "post_delay": 5000,
+        "next": [
+            "ScratchTicket_Select"
+        ],
+        "rate_limit": 1000,
+        "timeout": 600000
+    },
+    "ScratchTicket_Select": {
+        "recognition": "OCR",
+        "expected": "刮刮卡",
+        "roi": [
+            49,
+            646,
+            119,
+            47
+        ],
+        "post_delay": 5000,
+        "action": "Click",
+        "next": [
+            "ScratchTicket_LuckyTicketIsScratched"
+        ],
+        "interrupt": [
+            "ScratchTicket_CheckLuckyTicket"
+        ],
+        "rate_limit": 1000,
+        "timeout": 20000
+    },
+    "ScratchTicket_LuckyTicketIsScratched": {
+        "recognition": "FeatureMatch",
+        "template": "LuckyTicket_Center__537_344_200_91__487_294_300_191.png",
+        "roi": [
+            487,
+            294,
+            300,
+            191
+        ],
+        "inverse": true,
+        "next": [
+            "MainScreenInspection"
+        ]
+    },
+    "ScratchTicket_CheckLuckyTicket": {
+        "recognition": "FeatureMatch",
+        "template": "LuckyTicket_Center__537_344_200_91__487_294_300_191.png",
+        "roi": [
+            487,
+            294,
+            300,
+            191
+        ],
+        "next": [
+            "ScratchTicket_Scratch"
+        ]
+    },
+    "ScratchTicket_Scratch": {
+        "action": "MultiSwipe",
+        "swipes": [
+            {
+                "begin": [
+                    520,
+                    413,
+                    5,
+                    4
+                ],
+                "end": [
+                    752,
+                    415,
+                    5,
+                    3
+                ],
+                "duration": 1000
+            },
+            {
+                "begin": [
+                    521,
+                    390,
+                    7,
+                    4
+                ],
+                "end": [
+                    753,
+                    386,
+                    4,
+                    6
+                ],
+                "duration": 1000,
+                "starting": 1000
+            },
+            {
+                "begin": [
+                    524,
+                    358,
+                    4,
+                    4
+                ],
+                "end": [
+                    749,
+                    357,
+                    3,
+                    3
+                ],
+                "duration": 1000,
+                "starting": 2000
+            }
+        ],
+        "post_delay": 5000,
+        "next": [
+            "Click_Confirm_OCR"
+        ]
+    },
+    "ScratchTicket_Scratch_Confirm_60": {
+        "recognition": "OCR",
+        "expected": "确认",
+        "roi": [
+            438,
+            421,
+            384,
+            187
+        ],
+        "action": "Click",
+        "post_delay": 5000,
+        "timeout": 60000
+    }
+}

@@ -3,14 +3,6 @@
         {
             "name": "安卓端",
             "type": "Adb"
-        },
-        {
-            "name": "桌面端",
-            "type": "Win32",
-            "win32": {
-                "class_regex": ".*",
-                "window_regex": "Visual Studio"
-            }
         }
     ],
     "resource": [
@@ -28,53 +20,127 @@
             ]
         }
     ],
-    "agent": {
-        "child_exec": "python",
-        "child_args": [
-            "{PROJECT_DIR}/agent/main.py"
-        ]
-    },
     "task": [
         {
-            "name": "普通任务",
-            "entry": "MyTask1"
-        },
-        {
-            "name": "选项任务",
-            "entry": "MyTask2",
+            "name": "启动",
+            "entry": "StartUp",
             "option": [
-                "任务选项1"
+                "区服",
+                "登录弹窗时领取十连签到"
             ]
         },
         {
-            "name": "参数任务",
-            "entry": "MyTask3",
+            "name": "每日(咖啡,刮刮乐,录像店)",
+            "entry": "DailyTask",
             "option": [
-                "任务选项1"
-            ],
-            "pipeline_override": {}
+                "请选择你的的咖啡",
+                "录像店经营目前不能匹配热门主题"
+            ]
         },
         {
-            "name": "带Custom的任务",
-            "entry": "MyTask4"
+            "name": "退出游戏",
+            "entry": "StopGame"
         }
     ],
     "option": {
-        "任务选项1": {
+        "区服": {
             "cases": [
                 {
-                    "name": "文本1",
+                    "name": "官服",
                     "pipeline_override": {
-                        "OcrTask": {
-                            "text": "文本1"
+                        "Start": {
+                            "package": "com.miHoYo.Nap"
+                        },
+                        "StopGame": {
+                            "package": "com.miHoYo.Nap"
                         }
                     }
                 },
                 {
-                    "name": "文本2",
+                    "name": "Bilibili服",
                     "pipeline_override": {
-                        "OcrTask": {
-                            "text": "文本2"
+                        "Start": {
+                            "package": "com.miHoYo.Nap.bilibili"
+                        },
+                        "StopGame": {
+                            "package": "com.miHoYo.Nap.bilibili"
+                        }
+                    }
+                }
+            ]
+        },
+        "登录弹窗时领取十连签到": {
+            "cases": [
+                {
+                    "name": "好",
+                    "pipeline_override": {}
+                },
+                {
+                    "name": "不要，我要自己来",
+                    "pipeline_override": {
+                        "Event_AllNewProgram": {
+                            "next": [
+                                "Click_Button_Back"
+                            ]
+                        }
+                    }
+                }
+            ]
+        },
+        "请选择你的的咖啡": {
+            "cases": [
+                {
+                    "name": "汀曼特调（80）",
+                    "pipeline_override": {
+                        "DailyCoffiee_Select": {
+                            "template": "Button\\Button_Coffee_80__33_503_152_123__0_453_235_223.png",
+                            "roi": [
+                                0,
+                                453,
+                                235,
+                                223
+                            ]
+                        },
+                        "DailyCoffee_Order_Confirm": {
+                            "next": [
+                                "MainScreenInspection"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "浓缩咖啡(60+x2)",
+                    "pipeline_override": {
+                        "DailyCoffiee_Select": {
+                            "template": "Button\\Button_Coffee_60x2__198_502_150_132__148_452_250_232.png",
+                            "roi": [
+                                148,
+                                452,
+                                250,
+                                232
+                            ]
+                        }
+                    }
+                }
+            ]
+        },
+        "录像店经营目前不能匹配热门主题": {
+            "cases": [
+                {
+                    "name": "好，我知道了",
+                    "pipeline_override": {}
+                },
+                {
+                    "name": "不用了，我自己来",
+                    "pipeline_override": {
+                        "DailyTask": {
+                            "next": [
+                                "DailyTask_Finish_300"
+                            ]
+                        },
+                        "DailyRecommendation_Goto": {
+                            "recognition": "DirectHit",
+                            "inverse": true
                         }
                     }
                 }

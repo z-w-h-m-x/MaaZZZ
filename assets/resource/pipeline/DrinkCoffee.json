@@ -1,0 +1,97 @@
+{
+    "DailyCoffee": {
+        "next": [
+            "DailyCoffee_Goto"
+        ],
+        "interrupt": [
+            "Click_Button_QuickMenu_QuickGuide",
+            "Click_Button_QuickMenu_Daliy"
+        ]
+    },
+    "DailyCoffee_Goto": {
+        "recognition": "OCR",
+        "expected": [
+            "品尝1次咖啡",
+            "前往"
+        ],
+        "roi": [
+            465,
+            232,
+            351,
+            388
+        ],
+        "index": 1,
+        "action": "Click",
+        "post_delay": 5000,
+        "next": [
+            "DailyCoffee_Goto_Confirm"
+        ]
+    },
+    "DailyCoffee_Goto_Confirm": {
+        "recognition": "OCR",
+        "expected": "确认",
+        "action": "Click",
+        "post_delay": 5000,
+        "next": [
+            "DailyCoffee_Select"
+        ],
+        "rate_limit": 1000,
+        "timeout": 600000
+    },
+    "DailyCoffee_Select": {
+        "recognition": "FeatureMatch",
+        "template": "Button\\Button_Coffee_60x2__198_502_150_132__148_452_250_232.png",
+        "roi": [
+            148,
+            452,
+            250,
+            232
+        ],
+        "action": "Click",
+        "next": [
+            "DailyCoffee_Order"
+        ]
+    },
+    "DailyCoffee_Order": {
+        "recognition": "OCR",
+        "expected": "点单",
+        "action": "Click",
+        "post_delay": 5000,
+        "next": [
+            "DailyCoffee_Order_Confirm"
+        ],
+        "timeout": 600000
+    },
+    "DailyCoffee_Order_Confirm": {
+        "recognition": "OCR",
+        "expected": "确认",
+        "roi": [
+            438,
+            421,
+            384,
+            187
+        ],
+        "action": "Click",
+        "post_delay": 5000,
+        "next": [
+            "DailyCoffee_Order_Confirm_60"
+        ],
+        "timeout": 600000
+    },
+    "DailyCoffee_Order_Confirm_60": {
+        "recognition": "OCR",
+        "expected": "确认",
+        "roi": [
+            618,
+            425,
+            288,
+            80
+        ],
+        "action": "Click",
+        "post_delay": 5000,
+        "next": [
+            "MainScreenInspection"
+        ],
+        "timeout": 60000
+    }
+}

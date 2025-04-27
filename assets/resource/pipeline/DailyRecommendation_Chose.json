@@ -1,0 +1,257 @@
+{
+    "DailyRecommendation_Chose_PublicityAgent_S01": {
+        "action": "Click",
+        "target": [
+            556,
+            488,
+            51,
+            47
+        ],
+        "post_delay": 2000,
+        "next": [
+            "DailyRecommendation_Chose_PublicityAgent_S02_OCR"
+        ],
+        "timeout": 60000
+    },
+    "DailyRecommendation_Chose_PublicityAgent_S02_OCR": {
+        "recognition": "OCR",
+        "expected": "确定",
+        "roi": [
+            1034,
+            649,
+            180,
+            53
+        ],
+        "action": "Click",
+        "post_delay": 5000,
+        "timeout": 60000,
+        "next": [
+            "DailyRecommendation_Chose_PublicityAgent_S04_OCR"
+        ]
+    },
+    "DailyRecommendation_Chose_PublicityAgent_S03": {
+        "recognition": "FeatureMatch",
+        "template": "Button\\Button_Back__53_16_81_54__3_0_181_120.png",
+        "green_mask": true,
+        "method": 5,
+        "index": 0,
+        "threshold": 0.9,
+        "action": "Click",
+        "post_delay": 5000,
+        "next": [
+            "DailyRecommendation_Chose_PublicityAgent_S04_OCR"
+        ],
+        "timeout": 60000
+    },
+    "DailyRecommendation_Chose_PublicityAgent_S04_OCR": {
+        "recognition": "OCR",
+        "expected": "经营状况",
+        "roi": [
+            799,
+            22,
+            122,
+            40
+        ],
+        "action": "Click",
+        "post_delay": 5000,
+        "target": [
+            730,
+            488,
+            40,
+            36
+        ],
+        "next": [
+            "DailyRecommendation_Tape_Check_S05_OCR"
+        ],
+        "rate_limit": 1000,
+        "timeout": 60000
+    },
+    "DailyRecommendation_Tape_Check_S05_OCR": {
+        "recognition": "OCR",
+        "expected": "上架筛选",
+        "roi": [
+            994,
+            28,
+            115,
+            32
+        ],
+        "next": [
+            "DailyRecommendation_Tape_Simple_Finish"
+        ],
+        "interrupt": [
+            "DailyRecommendation_Tape_Simple_ChoseFirst",
+            "DailyRecommendation_Tape_Simple_ChoseSecond",
+            "DailyRecommendation_Tape_Simple_ChoseThird",
+            "DailyRecommendation_Tape_Simple_ChoseOther"
+        ]
+    },
+    "DailyRecommendation_Tape_Simple_Finish": {
+        "recognition": "ColorMatch",
+        "roi": [
+            1020,
+            669,
+            4,
+            4
+        ],
+        "lower": [
+            176,
+            176,
+            176
+        ],
+        "upper": [
+            177,
+            177,
+            177
+        ],
+        "count": 10,
+        "next": []
+    },
+    "DailyRecommendation_Tape_Simple_ChoseFirst": {
+        "recognition": "TemplateMatch",
+        "template": "Tag_DailyRecommendation_TapeChosed__1163_123_42_42__1113_73_142_142.png",
+        "roi": [
+            452,
+            111,
+            71,
+            67
+        ],
+        "inverse": true,
+        "action": "Click",
+        "target": [
+            368,
+            162,
+            110,
+            138
+        ],
+        "threshold": 0.5,
+        "green_mask": true,
+        "next": [
+            "DailyRecommendation_Tape_Simple_ClickPickButton"
+        ]
+    },
+    "DailyRecommendation_Tape_Simple_ChoseSecond": {
+        "recognition": "TemplateMatch",
+        "template": "Tag_DailyRecommendation_TapeChosed__1163_123_42_42__1113_73_142_142.png",
+        "roi": [
+            626,
+            109,
+            71,
+            68
+        ],
+        "inverse": true,
+        "action": "Click",
+        "target": [
+            543,
+            166,
+            111,
+            138
+        ],
+        "threshold": 0.5,
+        "green_mask": true,
+        "next": [
+            "DailyRecommendation_Tape_Simple_ClickPickButton"
+        ]
+    },
+    "DailyRecommendation_Tape_Simple_ChoseThird": {
+        "recognition": "TemplateMatch",
+        "template": "Tag_DailyRecommendation_TapeChosed__1163_123_42_42__1113_73_142_142.png",
+        "roi": [
+            798,
+            110,
+            71,
+            68
+        ],
+        "inverse": true,
+        "action": "Click",
+        "target": [
+            718,
+            167,
+            110,
+            138
+        ],
+        "count": 1,
+        "threshold": 0.5,
+        "green_mask": true,
+        "next": [
+            "DailyRecommendation_Tape_Simple_ClickPickButton"
+        ]
+    },
+    "DailyRecommendation_Tape_Simple_ChoseOther": {
+        "action": "Click",
+        "target": [
+            368,
+            396,
+            111,
+            138
+        ],
+        "green_mask": true,
+        "next": [
+            "DailyRecommendation_Click_Button_Back"
+        ]
+    },
+    "DailyRecommendation_Tape_Simple_ClickPickButton": {
+        "recognition": "OCR",
+        "expected": "上架",
+        "roi": [
+            1048,
+            659,
+            152,
+            37
+        ],
+        "action": "Click",
+        "post_delay": 5000
+    },
+    "DailyRecommendation_Click_Button_Back": {
+        "recognition": "FeatureMatch",
+        "template": "Button\\Button_Back__53_16_81_54__3_0_181_120.png",
+        "green_mask": true,
+        "method": 5,
+        "index": 0,
+        "threshold": 0.9,
+        "action": "Click",
+        "post_delay": 5000,
+        "next": [
+            "DailyRecommendation_Start"
+        ]
+    },
+    "DailyRecommendation_Start": {
+        "recognition": "OCR",
+        "roi": [
+            1049,
+            640,
+            105,
+            38
+        ],
+        "expected": "开始营业",
+        "action": "Click",
+        "post_delay": 5000,
+        "next": [
+            "DailyRecommendation_Start_Confirm_OCR"
+        ],
+        "interrupt": [
+            "Click_RightConfirm_OCR"
+        ],
+        "timeout": 60000,
+        "rate_limit": 1000
+    },
+    "DailyRecommendation_Start_Confirm_OCR": {
+        "recognition": "OCR",
+        "expected": "确认",
+        "action": "Click",
+        "post_delay": 5000,
+        "next": [
+            "DailyRecommendation_Start_Confirm_Tip_OCR"
+        ],
+        "timeout": 60000,
+        "rate_limit": 1000
+    },
+    "DailyRecommendation_Start_Confirm_Tip_OCR": {
+        "recognition": "OCR",
+        "expected": "确认",
+        "action": "Click",
+        "post_delay": 5000,
+        "next": [
+            "MainScreenInspection"
+        ]
+    }
+}

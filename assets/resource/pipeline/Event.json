@@ -1,0 +1,38 @@
+{
+    "Event_AllNewProgram": {
+        "recognition": "OCR",
+        "expected": "全新放送",
+        "next": [
+            "Event_AllNewProgram_Get",
+            "Click_Button_Back"
+        ]
+    },
+    "Event_AllNewProgram_Get": {
+        "recognition": "FeatureMatch",
+        "template": "Button\\Button_AllNewProgram_Get__706_518_54_22__656_468_154_122.png",
+        "roi": [
+            374,
+            497,
+            893,
+            67
+        ],
+        "method": 3,
+        "index": 0,
+        "threshold": 0.5,
+        "green_mask": true,
+        "action": "Click",
+        "next": [
+            "Event_AllNewProgram_Confirm"
+        ],
+        "rate_limit": 1000
+    },
+    "Event_AllNewProgram_Confirm": {
+        "recognition": "OCR",
+        "expected": "确认",
+        "action": "Click",
+        "post_delay": 5000,
+        "next": [
+            "Click_Button_Back"
+        ]
+    }
+}
