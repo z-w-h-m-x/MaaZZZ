@@ -81,17 +81,17 @@ jobs:
         id: MFADC
         shell: bash
         run: |
-          if ["${{ matrix.os }}" = "win"]; then
+          if [ "${{ matrix.os }}" = "win" ]; then
             echo "OS=win" >> $GITHUB_OUTPUT
-          elif ["${{ matrix.os }}" = "macos"]; then
+          elif [ "${{ matrix.os }}" = "macos" ]; then
             echo "OS=osx" >> $GITHUB_OUTPUT
-          elif ["${{ matrix.os }}" = "linux"]; then
+          elif [ "${{ matrix.os }}" = "linux" ]; then
             echo "OS=linux" >> $GITHUB_OUTPUT
           fi
 
-          if ["${{ matrix.arch }}" = "aarch64"]; then
+          if [ "${{ matrix.arch }}" = "aarch64" ]; then
             echo "arch=arm64" >> $GITHUB_OUTPUT
-          elif ["${{ matrix.os }}" = "x86_64"]; then
+          elif [ "${{ matrix.os }}" = "x86_64" ]; then
             echo "arch=x64" >> $GITHUB_OUTPUT
           fi
 
@@ -125,6 +125,10 @@ jobs:
       - uses: actions/download-artifact@v4
         with:
           path: assets
+
+      - run: |
+          cd assets
+          rm -f */MFAAvalonia-*.zip
 
       - run: |
           cd assets
