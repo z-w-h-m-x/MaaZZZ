@@ -104,7 +104,9 @@
             177
         ],
         "count": 10,
-        "next": []
+        "next": [
+            "DailyRecommendation_Click_Button_Back"
+        ]
     },
     "DailyRecommendation_Tape_Simple_ChoseFirst": {
         "recognition": "TemplateMatch",
@@ -185,9 +187,7 @@
             138
         ],
         "green_mask": true,
-        "next": [
-            "DailyRecommendation_Click_Button_Back"
-        ]
+        "next": []
     },
     "DailyRecommendation_Tape_Simple_ClickPickButton": {
         "recognition": "OCR",

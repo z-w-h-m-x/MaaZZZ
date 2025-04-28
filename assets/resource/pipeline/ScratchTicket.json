@@ -90,46 +90,46 @@
         "swipes": [
             {
                 "begin": [
-                    520,
-                    413,
+                    500,
+                    421,
                     5,
                     4
                 ],
                 "end": [
-                    752,
-                    415,
+                    770,
+                    426,
                     5,
-                    3
+                    5
                 ],
                 "duration": 1000
             },
             {
                 "begin": [
-                    521,
-                    390,
-                    7,
-                    4
+                    499,
+                    397,
+                    4,
+                    2
                 ],
                 "end": [
-                    753,
-                    386,
-                    4,
-                    6
+                    777,
+                    394,
+                    3,
+                    4
                 ],
                 "duration": 1000,
                 "starting": 1000
             },
             {
                 "begin": [
-                    524,
-                    358,
-                    4,
-                    4
+                    497,
+                    367,
+                    3,
+                    2
                 ],
                 "end": [
-                    749,
-                    357,
-                    3,
+                    775,
+                    358,
+                    2,
                     3
                 ],
                 "duration": 1000,
@@ -139,7 +139,64 @@
         "post_delay": 5000,
         "next": [
             "Click_Confirm_OCR"
-        ]
+        ],
+        "interrupt": [
+            "ScratchTicket_Scratch_"
+        ],
+        "timeout": 60000
+    },
+    "ScratchTicket_Scratch_": {
+        "action": "MultiSwipe",
+        "swipes": [
+            {
+                "begin": [
+                    497,
+                    367,
+                    3,
+                    2
+                ],
+                "end": [
+                    775,
+                    358,
+                    2,
+                    3
+                ],
+                "duration": 1000
+            },
+            {
+                "begin": [
+                    499,
+                    397,
+                    4,
+                    2
+                ],
+                "end": [
+                    777,
+                    394,
+                    3,
+                    4
+                ],
+                "duration": 1000,
+                "starting": 1000
+            },
+            {
+                "begin": [
+                    500,
+                    421,
+                    5,
+                    4
+                ],
+                "end": [
+                    770,
+                    426,
+                    5,
+                    5
+                ],
+                "duration": 1000,
+                "starting": 2000
+            }
+        ],
+        "post_delay": 5000
     },
     "ScratchTicket_Scratch_Confirm_60": {
         "recognition": "OCR",

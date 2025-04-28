@@ -21,7 +21,8 @@
             746,
             161
         ],
-        "green_mask": true
+        "green_mask": true,
+        "count": 200
     },
     "DailyTask_Finish_300": {
         "recognition": "FeatureMatch",
@@ -32,6 +33,7 @@
             746,
             161
         ],
-        "green_mask": true
+        "green_mask": true,
+        "count": 170
     }
 }
