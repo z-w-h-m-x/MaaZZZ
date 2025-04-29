@@ -29,7 +29,7 @@
     },
     "DebugRecommendation_Scene": {
         "next": [
-            "DailyRecommendation_Chose_Finish"
+            "DailyRecommendation_Check_Scene"
         ],
         "interrupt": [
             "DailyRecommendation_Yesterday"
@@ -50,6 +50,25 @@
         "timeout": 600000
     },
     "DailyRecommendation_Check_Scene": {
+        "recognition": "OCR",
+        "expected": "经营状况",
+        "roi": [
+            799,
+            22,
+            122,
+            40
+        ],
+        "timeout": 600000,
+        "rate_limit": 1000,
+        "post_delay": 5000,
+        "next": [
+            "DailyRecommendation_Check_Scene_Again"
+        ],
+        "interrupt": [
+            "DailyRecommendation_Yesterday"
+        ]
+    },
+    "DailyRecommendation_Check_Scene_Again": {
         "recognition": "OCR",
         "expected": "经营状况",
         "roi": [
